@@ -8,7 +8,9 @@
 
     <!-- ########## START: LEFT PANEL ########## -->
     
-
+{{-- Admin Email: sohidulislam@gmail.com
+     Admin password: admin
+ --}}
    
     @guest
     @else
@@ -21,12 +23,76 @@
       {{-- @include('admin.partial.footer'); --}}
     </div><!-- sl-mainpanel -->
     <!-- ########## END: MAIN PANEL ########## -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-    <script src="{{ asset('public/backend/lib/jquery/jquery.js')}}"></script>
-    <script src="{{ asset('public/backend/lib/popper.js/popper.js')}}"></script>
-    <script src="{{ asset('public/backend/lib/bootstrap/bootstrap.js')}}"></script>
+ 
+    <script src="{{ asset('public/backend/lib/jquery/jquery.js') }}"></script>
+    <script src="{{ asset('public/backend/lib/popper.js/popper.js') }}"></script>
+    <script src="{{ asset('public/backend/lib/bootstrap/bootstrap.js') }}"></script>
+    <script src="{{ asset('public/backend/lib/perfect-scrollbar/js/perfect-scrollbar.jquery.js') }}"></script>
+    <script src="{{ asset('public/backend/lib/highlightjs/highlight.pack.js') }}"></script>
+    <script src="{{ asset('public/backend/lib/datatables/jquery.dataTables.js') }}"></script>
+    <script src="{{ asset('public/backend/lib/datatables-responsive/dataTables.responsive.js') }}"></script>
+    <script src="{{ asset('public/backend/lib/select2/js/select2.min.js') }}"></script>
+    <script src="{{ asset('public/backend/lib/summernote/summernote-bs4.min.js') }}"></script>
+    <script src="{{ asset('public/backend/js/starlight.js') }}"></script>
+    <script src="{{ asset('public/backend/lib/medium-editor/medium-editor.js') }}"></script>
+     <script>
+      $(function(){
+        'use strict';
+
+        // Inline editor
+        var editor = new MediumEditor('.editable');
+
+        // Summernote editor
+        $('#summernote').summernote({
+          height: 150,
+          tooltip: false
+        })
+      });
+    </script>
+    <script>
+      $(function(){
+        'use strict';
+
+        // Inline editor
+        var editor = new MediumEditor('.editable');
+
+        // Summernote editor
+        $('#summernote1').summernote({
+          height: 150,
+          tooltip: false
+        })
+      });
+    </script>
+    <script>
+      $(function(){
+        'use strict';
+
+        $('#datatable1').DataTable({
+          responsive: true,
+          language: {
+            searchPlaceholder: 'Search...',
+            sSearch: '',
+            lengthMenu: '_MENU_ items/page',
+          }
+        });
+
+        $('#datatable2').DataTable({
+          bLengthChange: false,
+          searching: false,
+          responsive: true
+        });
+
+        // Select2
+        $('.dataTables_length select').select2({ minimumResultsForSearch: Infinity });
+
+      });
+    </script>
+
+
+ 
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+   
     <script src="{{ asset('public/backend/lib/jquery-ui/jquery-ui.js')}}"></script>
-    <script src="{{ asset('public/backend/lib/perfect-scrollbar/js/perfect-scrollbar.jquery.js')}}"></script>
     <script src="{{ asset('public/backend/lib/jquery.sparkline.bower/jquery.sparkline.min.js')}}"></script>
     <script src="{{ asset('public/backend/lib/d3/d3.js')}}"></script>
     <script src="{{ asset('public/backend/lib/rickshaw/rickshaw.min.js')}}"></script>
@@ -34,14 +100,11 @@
     <script src="{{ asset('public/backend/lib/Flot/jquery.flot.js')}}"></script>
     <script src="{{ asset('public/backend/lib/Flot/jquery.flot.pie.js')}}"></script>
     <script src="{{ asset('public/backend/lib/Flot/jquery.flot.resize.js')}}"></script>
-    <script src="{{ asset('public/backend/lib/flot-spline/jquery.flot.spline.js')}}"></script>
-
-    <script src="{{ asset('public/backend/js/starlight.js')}}"></script>
+    <script src="{{ asset('public/backend/lib/flot-spline/jquery.flot.spline.js')}}"></script> 
     <script src="{{ asset('public/backend/js/ResizeSensor.js')}}"></script>
     <script src="{{ asset('public/backend/js/dashboard.js')}}"></script>
-     <script src="{{asset('public/panel/assets/plugins/pie_chart/chart.loader.js')}}"></script>
-        <script src="{{asset('public/panel/assets/plugins/pie_chart/pie.active.js')}}"></script>
-         <script src="{{ asset('https://unpkg.com/sweetalert/dist/sweetalert.min.js')}}"></script>
+
+    <script src="{{ asset('https://unpkg.com/sweetalert/dist/sweetalert.min.js')}}"></script>
     <script>
         @if(Session::has('messege'))
           var type="{{Session::get('alert-type','info')}}"
@@ -74,4 +137,13 @@
                   dangerMode: true,
                 })
                 .then((willDelete) => {
-                  if (will
+                  if (willDelete) {
+                       window.location.href = link;
+                  } else {
+                    swal("Safe Data!");
+                  }
+                });
+            });
+    </script>
+  </body>
+</html>

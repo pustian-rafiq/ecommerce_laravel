@@ -25,7 +25,7 @@
     <meta name="description" content="Premium Quality and Responsive UI for Dashboard.">
     <meta name="author" content="ThemePixels">
 
-    <title>Starlight Responsive Bootstrap 4 Admin Template</title>
+    <title>namkora ecommerce site</title>
 
     <!-- vendor css -->
     <link href="{{ asset('public/backend/lib/font-awesome/css/font-awesome.css')}}" rel="stylesheet">
