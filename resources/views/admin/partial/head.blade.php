@@ -36,3 +36,11 @@
          <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css">
     <!-- Starlight CSS -->
     <link rel="stylesheet" href="{{ asset('public/backend/css/starlight.css')}}">
+     <link href="{{ asset('public/backend/lib/datatables/jquery.dataTables.css') }}" rel="stylesheet">
+     <link href="{{ asset('public/backend/lib/select2/css/select2.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('public/backend/css/starlight.css') }}">
+     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css">
+    <!-- Starlight CSS -->
+    {{-- <link rel="stylesheet" href="{{asset('public/backend/css/starlight.css')}}"> --}}
+   {{--  <link href="{{ asset('public/backend/lib/datatables/jquery.dataTables.css') }}" rel="stylesheet"> --}}
+    <link href="{{ asset('public/backend/lib/summernote/summernote-bs4.css') }}" rel="stylesheet">

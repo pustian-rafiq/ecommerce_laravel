@@ -101,10 +101,16 @@
     <script src="{{ asset('public/backend/lib/Flot/jquery.flot.pie.js')}}"></script>
     <script src="{{ asset('public/backend/lib/Flot/jquery.flot.resize.js')}}"></script>
     <script src="{{ asset('public/backend/lib/flot-spline/jquery.flot.spline.js')}}"></script> 
+    {{-- data table js --}}
+   {{--   <script src="{{ asset('public/backend/lib/datatables/jquery.dataTables.js') }}"></script>
+    <script src="{{ asset('public/backend/lib/datatables-responsive/dataTables.responsive.js') }}"></script> --}}
     <script src="{{ asset('public/backend/js/ResizeSensor.js')}}"></script>
     <script src="{{ asset('public/backend/js/dashboard.js')}}"></script>
 
     <script src="{{ asset('https://unpkg.com/sweetalert/dist/sweetalert.min.js')}}"></script>
+
+       
+
     <script>
         @if(Session::has('messege'))
           var type="{{Session::get('alert-type','info')}}"
