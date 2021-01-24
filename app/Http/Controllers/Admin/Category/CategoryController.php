@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Category;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Model\Admin\Category;
+use App\Model\Admin\Subcategory;
 use DB;
 
 class CategoryController extends Controller
@@ -35,7 +36,7 @@ class CategoryController extends Controller
     	$category->save();
 
     	$notification=array(
-                 'messege'=>'Category Insert Done',
+                 'messege'=>'Category Inserted Successfully',
                  'alert-type'=>'success'
                        );
             return Redirect()->back()->with($notification);
