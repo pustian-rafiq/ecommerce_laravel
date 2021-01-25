@@ -48,10 +48,21 @@ Route::get('delete/subcategory/{id}', 'Admin\Subcategory\SubcategoryController@d
 Route::get('edit/subcategory/{id}', 'Admin\Subcategory\SubcategoryController@editSubcategory');
 Route::post('update/subcategory/{id}', 'Admin\Subcategory\SubcategoryController@updateSubcategory');
 
-//Coupon section
+//Coupon section using name route
 Route::get('admin/coupons','Admin\Coupon\CouponController@Coupon')->name('coupons');
 Route::post('admin/store/coupon', 'Admin\Coupon\CouponController@storeCoupon')->name('store.coupon');//{{ route('admin.post.approve',$post->id) }}
 
 Route::get('delete/coupon/{id}','Admin\Coupon\CouponController@deleteCoupon')->name('delete.coupon');
 Route::get('edit/coupon/{id}', 'Admin\Coupon\CouponController@editCoupon')->name('edit.coupon');
 Route::post('update/coupon/{id}', 'Admin\Coupon\CouponController@updateCoupon')->name('update.coupon');
+
+
+//Newsletter Section
+Route::get('admin/newsletter','FrontController@showSubscribers')->name('admin.newsletters');
+Route::get('admin/delete/subscriber/{id}','FrontController@deleteSubscriber')->name('delete.subscriber');
+
+
+//FrontEnd section start here
+ 
+Route::post('store/newsletter','FrontController@storeNewsletter')->name('store.newsletter');
+
