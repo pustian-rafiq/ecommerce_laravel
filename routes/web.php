@@ -61,6 +61,11 @@ Route::post('update/coupon/{id}', 'Admin\Coupon\CouponController@updateCoupon')-
 Route::get('admin/newsletter','FrontController@showSubscribers')->name('admin.newsletters');
 Route::get('admin/delete/subscriber/{id}','FrontController@deleteSubscriber')->name('delete.subscriber');
 
+//Product Section
+Route::get('admin/add/product','Admin\Product\ProductController@addProduct')->name('add.product');
+Route::get('admin/show/allproduct','Admin\Product\ProductController@showAllProduct')->name('all.product');
+Route::post('admin/store/product','Admin\Product\ProductController@storeAllProduct')->name('store.product');
+
 
 //FrontEnd section start here
  
