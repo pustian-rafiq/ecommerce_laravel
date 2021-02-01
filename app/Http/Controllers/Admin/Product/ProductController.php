@@ -62,10 +62,12 @@ class ProductController extends Controller
     		$image_one_name = hexdec(uniqid()).'.'.$image_one->getClientOriginalExtension();
     		$image_two_name = hexdec(uniqid()).'.'.$image_two->getClientOriginalExtension();
             $image_three_name = hexdec(uniqid()).'.'.$image_three->getClientOriginalExtension();
+
     		// $upload_path = 'public/media/product/';
     		// $success = $image_one->move($upload_path,image_one_name);
     		// $success = $image_two->move($upload_path,image_two_name);
 
+       /*Image insert using laravel image intervention*/
             Image::make($image_one)->resize(300,300)->save('public/media/product/'.$image_one_name);
             Image::make($image_two)->resize(300,300)->save('public/media/product/'.$image_two_name);
             Image::make($image_three)->resize(300,300)->save('public/media/product/'.$image_three_name);
@@ -84,9 +86,49 @@ class ProductController extends Controller
     		return Redirect()->back()->with($notification);
     	}
     }
-    public function showProduct(){
-    	// $categories = Category::all();
-    	// return view('admin.category.category',compact('categories'));
+    public function showAllProduct(){
+    	 // $categories = Category::all();
+      //    $brands = Brand::all();
+        $products = DB::table('products')
+                    ->join('categories','products.category_id','categories.id')
+                    ->join('brands','products.brand_id','brands.id')
+                    ->select('products.*','categories.category_name','brands.brand_name')
+                    ->get();
+                  return view('admin.product.show',compact('products'));
+         
+    }
+
+    public function Active($id){
+        DB::table('products')->where('id',$id)->update(['status'=> 1]);
+        $notification = array(
+                'messege' => 'Product  Successfully Activated',
+                'alert-type' => 'success'
+            );
+            return Redirect()->back()->with($notification);
+    }
+     public function Deactive($id){
+        DB::table('products')->where('id',$id)->update(['status'=> 0]);
+        $notification = array(
+                'messege' => 'Product  Successfully Deactivated',
+                'alert-type' => 'success'
+            );
+            return Redirect()->back()->with($notification);
+    }
+
+    public function DeleteProduct($id){
+        $product = DB::table('products')->where('id',$id)->first();
+        $image1 = $product->image_one;
+        $image2 = $product->image_two;
+        $image3 = $product->image_three;
+        unlink($image1);
+        unlink($image2);
+        unlink($image3);
+        DB::table('products')->where('id',$id)->delete();
+        $notification = array(
+                'messege' => 'Product  Successfully Deleted',
+                'alert-type' => 'success'
+            );
+            return Redirect()->back()->with($notification);
     }
     // Collect Subcategories Uisng Ajax
     public function GetSubcat($category_id){

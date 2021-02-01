@@ -62,12 +62,26 @@ Route::get('admin/newsletter','FrontController@showSubscribers')->name('admin.ne
 Route::get('admin/delete/subscriber/{id}','FrontController@deleteSubscriber')->name('delete.subscriber');
 
 //Product Routes
-Route::get('admin/add/product','Admin\Product\ProductController@addProduct')->name('add.product');
-Route::get('admin/show/allproduct','Admin\Product\ProductController@showAllProduct')->name('all.product');
+Route::get('admin/add/product','Admin\Product\ProductController@addProduct')->name('create.product');
+Route::get('admin/show/allproduct','Admin\Product\ProductController@showAllProduct')->name('showall.product');
 Route::post('admin/store/product','Admin\Product\ProductController@storeProduct')->name('store.product');
+Route::get('admin/active/product/{id}','Admin\Product\ProductController@Active')->name('active.product');
+Route::get('admin/deactive/product/{id}','Admin\Product\ProductController@deactive')->name('deactive.product');
+Route::get('admin/edit/product/{id}','Admin\Product\ProductController@EditProduct')->name('edit.product');
+Route::get('admin/delete/product/{id}','Admin\Product\ProductController@DeleteProduct')->name('delete.product');
+Route::get('admin/view/product/{id}','Admin\Product\ProductController@ViewProduct')->name('view.product');
+
+
+
+
+
 
 //Subcategry Routes using ajax
 Route::get('get/subcategory/{category_id}','Admin\Product\ProductController@GetSubcat');
+
+
+
+
 
 
 //FrontEnd section start here 

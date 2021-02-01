@@ -44,8 +44,8 @@
           </div><!-- menu-item -->
         </a><!-- sl-menu-link -->
         <ul class="sl-menu-sub nav flex-column">
-          <li class="nav-item"><a href="{{ route('add.product') }}" class="nav-link">Add Product</a></li>
-          <li class="nav-item"><a href="{{ route('all.product') }}" class="nav-link">All Products</a></li>
+          <li class="nav-item"><a href="{{ route('create.product') }}" class="nav-link">Add Product</a></li>
+          <li class="nav-item"><a href="{{ route('showall.product') }}" class="nav-link">All Products</a></li>
         </ul>
  
        
