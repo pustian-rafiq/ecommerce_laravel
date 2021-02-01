@@ -1,93 +1,190 @@
 @extends('admin.admin_layouts')
 
 @section('admin_content')
-  <div class="sl-mainpanel">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css" crossorigin="anonymous">
+
+    <div class="sl-mainpanel">
       <nav class="breadcrumb sl-breadcrumb">
-        <a class="breadcrumb-item" href="index.html">Starlight</a>
-        <a class="breadcrumb-item" href="index.html">Tables</a>
-        <span class="breadcrumb-item active">Product Table</span>
+        <a class="breadcrumb-item" href="#">Starlight</a>
+        <span class="breadcrumb-item active">Product Section</span>
       </nav>
-
       <div class="sl-pagebody">
-        <div class="sl-page-title">
-          <h5>Product Table</h5>
+           <div class="card pd-20 pd-sm-40">
+          <h6 class="card-body-title">Show Product Details</h6>
          
-        </div><!-- sl-page-title -->
-
-        <div class="card pd-20 pd-sm-40">
-          <h6 class="card-body-title">Product List
-          <a href="#" class="btn btn-sm btn-warning" style="float: right;" data-toggle="modal" data-target="#modaldemo3">Add New Product</a>
-      </h6>
-
+         
           
+          <div class="form-layout">
+            <div class="row mg-b-25">
+              <div class="col-lg-4">
+                <div class="form-group">
+                  <label class="form-control-label">Product Name: <span class="tx-danger">*</span></label>
+                   <p style="border:1px solid black; padding: 5px">{{    $product->product_name }}</p>
+                </div>
+              </div><!-- col-4 -->
+              <div class="col-lg-4">
+                <div class="form-group">
+                  <label class="form-control-label">Product Code: <span class="tx-danger">*</span></label>
+                 <p style="border:1px solid black; padding: 5px">{{    $product->product_code }}</p>
+                </div>
+              </div><!-- col-4 -->
+              <div class="col-lg-4">
+                <div class="form-group">
+                  <label class="form-control-label">Quantity <span class="tx-danger">*</span></label>
+                  <p style="border:1px solid black; padding: 5px">{{    $product->product_quantity }}</p>
+                </div>
+              </div><!-- col-4 -->
+              <div class="col-lg-4">
+                <div class="form-group mg-b-10-force">
+                  <label class="form-control-label">Category: <span class="tx-danger">*</span></label>
+                   <p style="border:1px solid black; padding: 5px">{{ $product->category_name }}</p>
+                </div>
+              </div><!-- col-4 -->
+              <div class="col-lg-4">
+                <div class="form-group mg-b-10-force">
+                  <label class="form-control-label">Sub Category: <span class="tx-danger">*</span></label>
+                    <p style="border:1px solid black; padding: 5px">{{ $product->subcategory_name }}</p>
+                </div>
+              </div><!-- col-4 -->
+              <div class="col-lg-4">
+                <div class="form-group mg-b-10-force">
+                  <label class="form-control-label">Brand: <span class="tx-danger">*</span></label>
+                   <p style="border:1px solid black; padding: 5px">{{ $product->brand_name }}</p>
+                   
+                </div>
+              </div><!-- col-4 -->
+              <div class="col-lg-4">
+                <div class="form-group">
+                  <label class="form-control-label">Product Size: <span class="tx-danger">*</span></label><br>
+                  <p style="border:1px solid black; padding: 5px">{{ $product->product_size }}</p>
+                </div>
+              </div><!-- col-4 -->
+              <div class="col-lg-4">
+                <div class="form-group">
+                  <label class="form-control-label">Product Color: <span class="tx-danger">*</span></label><br>
+                  <p style="border:1px solid black; padding: 5px">{{ $product->product_color }}</p>
+                </div>
+              </div><!-- col-4 -->
+              <div class="col-lg-4">
+                <div class="form-group">
+                  <label class="form-control-label">Selling Price <span class="tx-danger">*</span></label>
+                  <p style="border:1px solid black; padding: 5px">{{ $product->selling_price }}</p>
+                </div>
+              </div><!-- col-4 -->
 
-          <div class="table-wrapper">
-            <table id="datatable1" class="table display responsive nowrap">
-              <thead>
-                <tr>
-                  <th class="wd-10p">Sl No.</th>
-                  <th class="wd-10p">Product Name</th>
-                {{--   <th class="wd-10p">Product Code</th> --}}
-                  <th class="wd-10p">Image</th>
-                  <th class="wd-10p">Category</th>
-                  <th class="wd-10p">Brand</th>
-                  <th class="wd-10p">Quantity</th>
-                  <th class="wd-10p">Status</th>
-                  <th class="wd-20p">Action</th>
-                </tr>
-              </thead>
-              <tbody>
-              	<?php $i=0; ?>
-              @foreach($products as $product)
-                <tr>
-                  <td>{{ ++$i }}</td>
-                  <td>{{  substr($product->product_name, 0, 10) }}</td>
-                 {{--  <td>{{ $product->product_code }}</td> --}}
-                  <td><img src="{{ URL::to($product->image_one) }}" height="50"></td>
-                  <td>{{ $product->category_name }}</td>
-                  <td>{{ $product->brand_name }}</td>
-                  <td>{{ $product->product_quantity }}</td>
-                  <td>
-                    @if($product->status == 1)
-                    <span class="badge badge-success">Active</span>
-                    @else
-                    <span class="badge badge-danger">Deactive</span>
-                    @endif
-                  </td>
-                  <td>
-                  	<a href="{{ route('view.product',$product->id) }}" class="btn btn-success"><i class="fa fa-eye" aria-hidden="true" title="View"></i></a>
+              <div class="col-lg-12">
+                <div class="form-group" style="border:1px solid grey;padding:10px; ">
+                  <label class="form-control-label">Product Details<span class="tx-danger">*</span></label>
+                    <br>
+                  <p >{!! $product->product_details !!}</p>
+                </div>  
+              </div>
+            
 
-                    <a href="{{ route('edit.product',$product->id) }}" class="btn btn-success"><i class="fa fa-pencil-square-o" aria-hidden="true" title="Edit"></i></a>
-                  	<a href="{{ route('delete.product',$product->id) }}" class="btn btn-danger" id="delete"><i class="fa fa-trash" aria-hidden="true" title="Delete"></i></a>
-                    
-                    @if($product->status==1)
-                    <a href="{{ route('deactive.product',$product->id) }}" class="btn btn-danger" ><i class="fa fa-thumbs-up" aria-hidden="true" title="Active"></i></a>
-                    @else
-                    <a href="{{ route('active.product',$product->id) }}" class="btn btn-danger"  ><i class="fa fa-thumbs-down" aria-hidden="true" title="Deactive"></i></a>
-                    @endif
-                  </td>
-              </tr>
-              @endforeach
-              </tbody>
-              <tfoot> 
-                <tr>
-                  <th class="wd-20p">Sl No.</th>
-                  <th class="wd-20p">Product Name</th>
-                  {{-- <th class="wd-20p">Product Code</th> --}}
-                  <th class="wd-20p">Image</th>
-                  <th class="wd-20p">Category</th>
-                  <th class="wd-30p">Brand</th>
-                  <th class="wd-30p">Quantity</th>
-                  <th class="wd-30p">Status</th>
-                  <th class="wd-30p">Action</th>
-                </tr>
-              </tfoot>
-            </table>
-          </div><!-- table-wrapper -->
+              <div class="col-lg-4">
+                <lebel>Image One (Main Thumbnail)<span class="tx-danger">*</span></lebel>
+                <img src="{{ URL::to($product->image_one) }}" height="70" width="70">
+              </label>
+              </div>
+              <div class="col-lg-4">
+                <lebel>Image Two <span class="tx-danger">*</span></lebel>
+                 <img src="{{ URL::to($product->image_two) }}" height="70" width="70">
+              </div>
+              <div class="col-lg-4">
+                <lebel>Image Three <span class="tx-danger">*</span></lebel>
+                 <img src="{{ URL::to($product->image_three) }}" height="70" width="70">
+              </div>
+            </div><!-- row -->
+            <br><hr>
+            <div class="row">
+       <div class="col-lg-4">
+          <label >
+            <span>Main Slider</span>
+            @if($product->main_slider == 1)
+                    <span class="badge badge-success">Active</span> 
+                  @else
+                  <span class="badge badge-danger">Inactive</span>  
+                  @endif
+                  
+              </label>
+         
+        </div>
+          <div class="col-lg-4">
+     
+           <label >
+            <span>Hot Deal</span>
+            @if($product->hot_deal == 1)
+                    <span class="badge badge-success">Active</span> 
+                  @else
+                  <span class="badge badge-danger">Inactive</span>  
+                  @endif
+                  
+          </label>
+              </div>
+         <div class="col-lg-4">
+            <label >
+            <span>Best Rated</span>
+            @if($product->best_rated == 1)
+                    <span class="badge badge-success">Active</span> 
+                  @else
+                  <span class="badge badge-danger">Inactive</span>  
+                  @endif
+                  
+              </label>
+          </div>
+              <div class="col-lg-4">
+              <label >
+            <span>Trend Product</span>
+            @if($product->trend == 1)
+                    <span class="badge badge-success">Active</span> 
+                  @else
+                  <span class="badge badge-danger">Inactive</span>  
+                  @endif
+                  
+              </label>
+              </div>
+              <div class="col-lg-4">
+             <label >
+            <span>Mid Slider</span>
+            @if($product->mid_slider == 1)
+                    <span class="badge badge-success">Active</span> 
+                  @else
+                  <span class="badge badge-danger">Inactive</span>  
+                  @endif
+                  
+              </label>
+              </div>
+              <div class="col-lg-4">
+              <label >
+            <span>Hot New</span>
+            @if($product->hot_new == 1)
+                    <span class="badge badge-success">Active</span> 
+                  @else
+                  <span class="badge badge-danger">Inactive</span>  
+                  @endif
+                  
+              </label>
+              </div>
+
+            {{--   <div class="col-lg-4">
+               <label >
+            <span>Buy One Get One</span>
+            @if($product->main_slider == 1)
+                    <span class="badge badge-success">Active</span> 
+                  @else
+                  <span class="badge badge-danger">Inactive</span>  
+                  @endif
+                  
+              </label>
+              </div> --}}
+
+            </div>
+
+            
         </div><!-- card -->
-      </div><!-- sl-pagebody -->
-   </div><!-- sl-mainpanel -->
-
-    
+       
+      </div><!-- sl-pagebody --> 
+    </div><!-- sl-mainpanel -->
  
 @endsection

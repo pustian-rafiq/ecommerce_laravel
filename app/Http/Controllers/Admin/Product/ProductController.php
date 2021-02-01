@@ -130,6 +130,18 @@ class ProductController extends Controller
             );
             return Redirect()->back()->with($notification);
     }
+
+    public function ViewProduct($id){
+        $product = DB::table('products')
+                    ->join('categories','products.category_id','categories.id')
+                    ->join('brands','products.brand_id','brands.id')
+                    ->join('subcategories','products.subcategory_id','categories.id')
+                    ->select('products.*','categories.category_name','brands.brand_name','subcategories.subcategory_name')
+                    ->where('products.id',$id)->first();
+                 return view('admin.product.show',compact('product'));
+                    //return response()->json($products);
+    }
+
     // Collect Subcategories Uisng Ajax
     public function GetSubcat($category_id){
     	$cat = DB::table("subcategories")->where("category_id",$category_id)->get();

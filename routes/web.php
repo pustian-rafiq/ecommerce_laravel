@@ -63,13 +63,14 @@ Route::get('admin/delete/subscriber/{id}','FrontController@deleteSubscriber')->n
 
 //Product Routes
 Route::get('admin/add/product','Admin\Product\ProductController@addProduct')->name('create.product');
-Route::get('admin/show/allproduct','Admin\Product\ProductController@showAllProduct')->name('showall.product');
+Route::get('admin/show/allproduct','Admin\Product\ProductController@showAllProduct')->name('index.product');
 Route::post('admin/store/product','Admin\Product\ProductController@storeProduct')->name('store.product');
 Route::get('admin/active/product/{id}','Admin\Product\ProductController@Active')->name('active.product');
 Route::get('admin/deactive/product/{id}','Admin\Product\ProductController@deactive')->name('deactive.product');
+Route::get('admin/view/product/{id}','Admin\Product\ProductController@ViewProduct')->name('view.product');
 Route::get('admin/edit/product/{id}','Admin\Product\ProductController@EditProduct')->name('edit.product');
 Route::get('admin/delete/product/{id}','Admin\Product\ProductController@DeleteProduct')->name('delete.product');
-Route::get('admin/view/product/{id}','Admin\Product\ProductController@ViewProduct')->name('view.product');
+
 
 
 
