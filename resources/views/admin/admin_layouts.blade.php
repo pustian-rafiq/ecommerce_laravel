@@ -49,6 +49,7 @@
         })
       });
     </script>
+    {{-- Summernote for Bnagla --}}
     <script>
       $(function(){
         'use strict';

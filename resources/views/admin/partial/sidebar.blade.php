@@ -1,6 +1,8 @@
    <div class="sl-logo"><a href=""><i class="icon ion-android-star-outline"></i> Namkora</a></div>
     <div class="sl-sideleft">
-      
+
+      {{-- Dashboard section --}}   
+
       <div class="sl-sideleft-menu">
         <a href="{{ url('admin/home') }}" class="sl-menu-link active">
           <div class="sl-menu-item">
@@ -23,7 +25,8 @@
           <li class="nav-item"><a href="{{ route('brands') }}" class="nav-link">Brand</a></li>
          </ul>
 
-         
+        {{-- Coupon section --}}    
+
         <a href="#" class="sl-menu-link">
           <div class="sl-menu-item">
             <i class="menu-item-icon icon ion-ios-gear-outline tx-24"></i>
@@ -35,6 +38,7 @@
           <li class="nav-item"><a href="{{ route('coupons')}}" class="nav-link">Coupon</a></li>
       </ul>
 
+{{-- Product section --}}
 
         <a href="#" class="sl-menu-link">
           <div class="sl-menu-item">
@@ -47,8 +51,22 @@
           <li class="nav-item"><a href="{{ route('create.product') }}" class="nav-link">Add Product</a></li>
           <li class="nav-item"><a href="{{ route('index.product') }}" class="nav-link">All Products</a></li>
         </ul>
- 
-       
+ {{-- Blog section --}}
+
+       <a href="#" class="sl-menu-link">
+          <div class="sl-menu-item">
+            <i class="menu-item-icon icon ion-ios-filing-outline tx-24"></i>
+            <span class="menu-item-label">Blog</span>
+            <i class="menu-item-arrow fa fa-angle-down"></i>
+          </div><!-- menu-item -->
+        </a><!-- sl-menu-link -->
+        <ul class="sl-menu-sub nav flex-column">
+          <li class="nav-item"><a href="{{ route('create.blogpost') }}" class="nav-link">Add Post</a></li>
+          <li class="nav-item"><a href="{{ route('showall.blogpost') }}" class="nav-link">All Post</a></li>
+
+        </ul>
+
+       {{-- Mailbox section --}}
         <a href="mailbox.html" class="sl-menu-link">
           <div class="sl-menu-item">
             <i class="menu-item-icon icon ion-ios-email-outline tx-24"></i>
