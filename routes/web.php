@@ -78,6 +78,9 @@ Route::get('admin/delete/product/{id}','Admin\Product\ProductController@DeletePr
 Route::get('admin/create/post','Admin\Post\PostController@createPost')->name('create.blogpost');
 Route::post('admin/store/post','Admin\Post\PostController@storePost')->name('store.blogpost');
 Route::get('admin/showall/post','Admin\Post\PostController@showAllPost')->name('showall.blogpost');
+Route::get('admin/delete/post/{id}','Admin\Post\PostController@deletePost')->name('delete.blogpost');
+Route::get('admin/edit/post/{id}','Admin\Post\PostController@editPost')->name('edit.blogpost');
+Route::post('admin/update/post/{id}','Admin\Post\PostController@updatePost')->name('update.blogpost');
 
 
 
