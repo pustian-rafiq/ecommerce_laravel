@@ -216,8 +216,15 @@ $categories = DB::table('categories')->get();
                 <div class="banner_product_image"><img src="{{ asset($slider->image_one) }}" alt=""></div>
                 <div class="col-lg-5 offset-lg-4 fill_height">
                     <div class="banner_content">
-                        <h1 class="banner_text">new era of smartphones</h1>
-                        <div class="banner_price"><span>$530</span>${{ $slider->selling_price }}</div>
+                        <h1 class="banner_text">{{substr($slider->product_name, 0, 20) }}</h1>
+                        <div class="banner_price">
+                        @if($slider->discount_price==NULL)
+                            <h2>${{ $slider->selling_price }}</h2>
+                        @else
+                         <span>${{ $slider->selling_price }}</span>${{ $slider->discount_price }}
+                        @endif
+                           
+                        </div>
                         <div class="banner_product_name">{{ $slider->brand_name }}</div>
                         <div class="button banner_button"><a href="#">Shop Now</a></div>
                     </div>

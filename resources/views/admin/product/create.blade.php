@@ -176,7 +176,7 @@
 
             <br><br><hr>
             <div class="form-layout-footer">
-              <button class="btn btn-info mg-r-5" type="submit">Submit </button>
+              <button class="btn btn-info mg-r-5" type="submit">Add Product </button>
             </div><!-- form-layout-footer -->
           </div><!-- form-layout -->
           </form>

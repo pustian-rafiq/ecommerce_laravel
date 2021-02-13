@@ -16,7 +16,7 @@
 
         <div class="card pd-20 pd-sm-40">
           <h6 class="card-body-title">Product List
-          <a href="{{ route('create.product') }}" class="btn btn-sm btn-warning" style="float: right;"  >Add New Product</a>
+          <a href="{{ route('create.product') }}" class="btn btn-sm btn-warning" style="float: right;" >Add New Product</a>
       </h6>
 
           
