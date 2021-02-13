@@ -22,7 +22,7 @@ class ProductController extends Controller
 
     	//$category=DB::table('categories')->get();
     	//$brand=DB::table('brands')->get();
-    	return view('admin.product.add_product',compact('category','subcategories','brand'));
+    	return view('admin.product.create',compact('category','subcategories','brand'));
     }
     public function storeProduct(Request $request){
     	$validateData = $request->validate([

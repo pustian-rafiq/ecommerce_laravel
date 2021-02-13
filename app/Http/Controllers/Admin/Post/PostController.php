@@ -126,7 +126,7 @@ class PostController extends Controller
     			'alert-type' => 'success'
     		);
     		return Redirect()->route('showall.blogpost')->with($notification);
-    	}
+    	  }
     	}else{
     		 
             $update = DB::table('posts')->where('id',$id)->update($post);

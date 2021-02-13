@@ -1,4 +1,7 @@
+@php
+$categories = DB::table('categories')->get();
 
+@endphp
         <nav class="main_nav">
             <div class="container">
                 <div class="row">
@@ -13,33 +16,32 @@
                                     <div class="cat_burger"><span></span><span></span><span></span></div>
                                     <div class="cat_menu_text">categories</div>
                                 </div>
-
+{{-- shows category and sub category --}}
                                 <ul class="cat_menu">
-                                    <li><a href="#">Computers & Laptops <i class="fas fa-chevron-right ml-auto"></i></a></li>
-                                    <li><a href="#">Cameras & Photos<i class="fas fa-chevron-right"></i></a></li>
+                                  @foreach($categories as $category)   
                                     <li class="hassubs">
-                                        <a href="#">Hardware<i class="fas fa-chevron-right"></i></a>
-                                        <ul>
-                                            <li class="hassubs">
-                                                <a href="#">Menu Item<i class="fas fa-chevron-right"></i></a>
-                                                <ul>
-                                                    <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                                    <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                                    <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                                    <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                            <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                            <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                        </ul>
+                                        
+                                        <a href="#">{{ $category->category_name }}<i class="fas fa-chevron-right"></i></a>
+                                        
+                                <ul>
+                                    @php
+                                    $subcategories = DB::table('subcategories')->where('category_id',$category->id)->get();
+
+                                    @endphp
+                                    @foreach($subcategories as $subcat)
+                                    <li class="hassubs">
+                                     
+                                        <a href="#">
+                                           {{ $subcat->subcategory_name }}
+                                         <i class="fas fa-chevron-right"></i>
+                                        </a>
+                                         
                                     </li>
-                                    <li><a href="#">Smartphones & Tablets<i class="fas fa-chevron-right"></i></a></li>
-                                    <li><a href="#">TV & Audio<i class="fas fa-chevron-right"></i></a></li>
-                                    <li><a href="#">Gadgets<i class="fas fa-chevron-right"></i></a></li>
-                                    <li><a href="#">Car Electronics<i class="fas fa-chevron-right"></i></a></li>
-                                    <li><a href="#">Video Games & Consoles<i class="fas fa-chevron-right"></i></a></li>
-                                    <li><a href="#">Accessories<i class="fas fa-chevron-right"></i></a></li>
+                                     @endforeach
+                                </ul>
+                                    </li>
+                                     
+                                    @endforeach
                                 </ul>
                             </div>
 
@@ -114,7 +116,7 @@
             </div>
         </nav>
         
-        <!-- Menu -->
+        <!--Top Menu Bar -->
 
         <div class="page_menu">
             <div class="container">
@@ -203,17 +205,20 @@
     </header>
     
     <!-- Banner -->
+    @php
+        $slider = DB::table('products')->join('brands','products.brand_id','brands.id')->select('products.*','brands.brand_name')->where('products.main_slider',1)->orderBy('id','DESC')->first();
+    @endphp
 
     <div class="banner">
         <div class="banner_background" style="background-image:url(images/banner_background.jpg)"></div>
         <div class="container fill_height">
             <div class="row fill_height">
-                <div class="banner_product_image"><img src="images/banner_product.png" alt=""></div>
+                <div class="banner_product_image"><img src="{{ asset($slider->image_one) }}" alt=""></div>
                 <div class="col-lg-5 offset-lg-4 fill_height">
                     <div class="banner_content">
                         <h1 class="banner_text">new era of smartphones</h1>
-                        <div class="banner_price"><span>$530</span>$460</div>
-                        <div class="banner_product_name">Apple Iphone 6s</div>
+                        <div class="banner_price"><span>$530</span>${{ $slider->selling_price }}</div>
+                        <div class="banner_product_name">{{ $slider->brand_name }}</div>
                         <div class="button banner_button"><a href="#">Shop Now</a></div>
                     </div>
                 </div>
