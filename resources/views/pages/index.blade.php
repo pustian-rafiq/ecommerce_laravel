@@ -304,8 +304,10 @@ $hot_products = DB::table('products')->join('brands','products.brand_id','brands
         </div>
     </div>
 
-    <!-- Popular Categories -->
-
+    <!--Show Popular Categories -->
+@php
+ $categories = DB::table('categories')->get();
+@endphp
     <div class="popular_categories">
         <div class="container">
             <div class="row">
@@ -327,44 +329,15 @@ $hot_products = DB::table('products')->join('brands','products.brand_id','brands
                         <div class="owl-carousel owl-theme popular_categories_slider">
 
                             <!-- Popular Categories Item -->
+                            @foreach($categories as $category)
                             <div class="owl-item">
                                 <div class="popular_category d-flex flex-column align-items-center justify-content-center">
-                                    <div class="popular_category_image"><img src="images/popular_1.png" alt=""></div>
-                                    <div class="popular_category_text">Smartphones & Tablets</div>
+                                    <div class="popular_category_image"><img src="{{ asset('public/frontend/images/popular_1.png') }}" alt=""></div>
+                                    <div class="popular_category_text">{{ $category->category_name }}</div>
                                 </div>
                             </div>
-
-                            <!-- Popular Categories Item -->
-                            <div class="owl-item">
-                                <div class="popular_category d-flex flex-column align-items-center justify-content-center">
-                                    <div class="popular_category_image"><img src="images/popular_2.png" alt=""></div>
-                                    <div class="popular_category_text">Computers & Laptops</div>
-                                </div>
-                            </div>
-
-                            <!-- Popular Categories Item -->
-                            <div class="owl-item">
-                                <div class="popular_category d-flex flex-column align-items-center justify-content-center">
-                                    <div class="popular_category_image"><img src="images/popular_3.png" alt=""></div>
-                                    <div class="popular_category_text">Gadgets</div>
-                                </div>
-                            </div>
-
-                            <!-- Popular Categories Item -->
-                            <div class="owl-item">
-                                <div class="popular_category d-flex flex-column align-items-center justify-content-center">
-                                    <div class="popular_category_image"><img src="images/popular_4.png" alt=""></div>
-                                    <div class="popular_category_text">Video Games & Consoles</div>
-                                </div>
-                            </div>
-
-                            <!-- Popular Categories Item -->
-                            <div class="owl-item">
-                                <div class="popular_category d-flex flex-column align-items-center justify-content-center">
-                                    <div class="popular_category_image"><img src="images/popular_5.png" alt=""></div>
-                                    <div class="popular_category_text">Accessories</div>
-                                </div>
-                            </div>
+                            @endforeach
+                            
 
                         </div>
                     </div>
@@ -373,8 +346,17 @@ $hot_products = DB::table('products')->join('brands','products.brand_id','brands
         </div>
     </div>
 
-    <!-- Banner -->
-
+    <!--Show Mid slider -->
+@php
+ $mid_products = DB::table('products')
+                    ->join('categories','products.category_id','categories.id')
+                    ->join('brands','products.brand_id','brands.id')
+                    ->select('products.*','categories.category_name','brands.brand_name')
+                    ->where('products.mid_slider',1)
+                    ->orderBy('products.id','DESC')
+                    ->limit(4)
+                    ->get();
+@endphp
     <div class="banner_2">
         <div class="banner_2_background" style="background-image:url(images/banner_2_background.jpg)"></div>
         <div class="banner_2_container">
@@ -384,15 +366,16 @@ $hot_products = DB::table('products')->join('brands','products.brand_id','brands
             <div class="owl-carousel owl-theme banner_2_slider">
 
                 <!-- Banner 2 Slider Item -->
+                @foreach($mid_products as $mid)
                 <div class="owl-item">
                     <div class="banner_2_item">
                         <div class="container fill_height">
                             <div class="row fill_height">
                                 <div class="col-lg-4 col-md-6 fill_height">
                                     <div class="banner_2_content">
-                                        <div class="banner_2_category">Laptops</div>
-                                        <div class="banner_2_title">MacBook Air 13</div>
-                                        <div class="banner_2_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum laoreet.</div>
+                                        <div class="banner_2_category">{{ $mid->category_name }}</div>
+                                        <div class="banner_2_title">{{ $mid->product_name }}</div>
+                                        <div class="banner_2_text">{{ $mid->brand_name }} <br>Product Id: {{ $mid->product_code }}.</div>
                                         <div class="rating_r rating_r_4 banner_2_rating"><i></i><i></i><i></i><i></i><i></i></div>
                                         <div class="button banner_2_button"><a href="#">Explore</a></div>
                                     </div>
@@ -400,63 +383,16 @@ $hot_products = DB::table('products')->join('brands','products.brand_id','brands
                                 </div>
                                 <div class="col-lg-8 col-md-6 fill_height">
                                     <div class="banner_2_image_container">
-                                        <div class="banner_2_image"><img src="images/banner_2_product.png" alt=""></div>
+                                        <div class="banner_2_image"><img src="{{ asset(
+                                            $mid->image_one) }}" style="height: 300px; width: 320px" alt="mid slider image"></div>
                                     </div>
                                 </div>
                             </div>
                         </div>          
                     </div>
                 </div>
-
-                <!-- Banner 2 Slider Item -->
-                <div class="owl-item">
-                    <div class="banner_2_item">
-                        <div class="container fill_height">
-                            <div class="row fill_height">
-                                <div class="col-lg-4 col-md-6 fill_height">
-                                    <div class="banner_2_content">
-                                        <div class="banner_2_category">Laptops</div>
-                                        <div class="banner_2_title">MacBook Air 13</div>
-                                        <div class="banner_2_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum laoreet.</div>
-                                        <div class="rating_r rating_r_4 banner_2_rating"><i></i><i></i><i></i><i></i><i></i></div>
-                                        <div class="button banner_2_button"><a href="#">Explore</a></div>
-                                    </div>
-                                    
-                                </div>
-                                <div class="col-lg-8 col-md-6 fill_height">
-                                    <div class="banner_2_image_container">
-                                        <div class="banner_2_image"><img src="images/banner_2_product.png" alt=""></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>          
-                    </div>
-                </div>
-
-                <!-- Banner 2 Slider Item -->
-                <div class="owl-item">
-                    <div class="banner_2_item">
-                        <div class="container fill_height">
-                            <div class="row fill_height">
-                                <div class="col-lg-4 col-md-6 fill_height">
-                                    <div class="banner_2_content">
-                                        <div class="banner_2_category">Laptops</div>
-                                        <div class="banner_2_title">MacBook Air 13</div>
-                                        <div class="banner_2_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum laoreet.</div>
-                                        <div class="rating_r rating_r_4 banner_2_rating"><i></i><i></i><i></i><i></i><i></i></div>
-                                        <div class="button banner_2_button"><a href="#">Explore</a></div>
-                                    </div>
-                                    
-                                </div>
-                                <div class="col-lg-8 col-md-6 fill_height">
-                                    <div class="banner_2_image_container">
-                                        <div class="banner_2_image"><img src="images/banner_2_product.png" alt=""></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>          
-                    </div>
-                </div>
+                @endforeach
+                
 
             </div>
         </div>

@@ -129,7 +129,7 @@
                             </div>
                         </form>
                         <div class="footer">
-                            <p>Copyright &copy; 2019 <a href="https://durbarit.com/">Durbar IT</a>. All rights reserved.</p>
+                            <p>Copyright &copy; 2021 <a href="https://durbarit.com/">Durbar IT</a>. All rights reserved.</p>
                         </div>
                     </div>
                 </div>
