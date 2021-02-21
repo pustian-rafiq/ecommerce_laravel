@@ -14,6 +14,7 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('public/frontend/plugins/slick-1.8.0/slick.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('public/frontend/styles/main_styles.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('public/frontend/styles/responsive.css') }}">
+ <link href="{{ asset('public/backend/lib/font-awesome/css/font-awesome.css')}}" rel="stylesheet">
  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css">
 @stack('css')
 </head>
@@ -56,8 +57,24 @@
                             </div>
                             <div class="top_bar_user">
                                 <div class="user_icon"><img src="images/user.svg" alt=""></div>
-                                <div><a href="{{ route('register') }}">Register</a></div>
-                                <div><a href="{{ route('login') }}">Sign in</a></div>
+                                @guest
+                                 <div><a href="{{ route('login') }}">Register/Sign in</a></div>
+                                @else
+                                <ul class="standard_dropdown top_bar_dropdown">
+                                    <li>
+                                        <a href="{{ route('home') }}"><div class="user_icon"><img src="{{ asset('public/frontend/images/user.svg') }}" alt=""></div>
+                                            Profile<i class="fa fa-chevron-down"></i></a>
+                                        <ul>
+                                            <li><a href="#">Wishlist</a></li>
+                                            <li><a href="#">Checkout</a></li>
+                                            <li><a href="#">Extra</a></li>
+                                        </ul>
+                                    </li>
+                           
+                                </ul>
+                                @endguest
+                               
+                               
                             </div>
                         </div>
                     </div>

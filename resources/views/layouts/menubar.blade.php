@@ -1,3 +1,4 @@
+{{-- Select all categpries to show the left side bar --}}
 @php
 $categories = DB::table('categories')->get();
 
@@ -16,12 +17,12 @@ $categories = DB::table('categories')->get();
                                     <div class="cat_burger"><span></span><span></span><span></span></div>
                                     <div class="cat_menu_text">categories</div>
                                 </div>
-{{-- shows category and sub category --}}
+{{-- shows category and sub category in the left side bar --}}
                                 <ul class="cat_menu">
                                   @foreach($categories as $category)   
                                     <li class="hassubs">
-                                        
-                                        <a href="#">{{ $category->category_name }}<i class="fas fa-chevron-right"></i></a>
+                                       
+                                        <a href="#">{{ $category->category_name }} <i class="fa fa-chevron-right"></i></a>
                                         
                                 <ul>
                                     @php
@@ -33,7 +34,7 @@ $categories = DB::table('categories')->get();
                                      
                                         <a href="#">
                                            {{ $subcat->subcategory_name }}
-                                         <i class="fas fa-chevron-right"></i>
+                                         <i class="fa fa-chevron-right"></i>
                                         </a>
                                          
                                     </li>

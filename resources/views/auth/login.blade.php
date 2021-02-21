@@ -16,7 +16,7 @@
                             @csrf
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Email Or Phone</label>
-                                <input type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}"  aria-describedby="emailHelp" placeholder="Email Or Phone" required="">
+                                <input type="text" id="exampleInputEmail1" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}"  aria-describedby="emailHelp" placeholder="Email Or Phone" required="">
                                 @error('email')
                                    <span class="invalid-feedback" role="alert">
                                        <strong>{{ $message }}</strong>
@@ -24,8 +24,8 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Password</label>
-                                <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" required=""  aria-describedby="emailHelp" placeholder="Password">
+                                <label for="exampleInputPassword">Password</label>
+                                <input type="password" id="exampleInputPassword" class="form-control @error('password') is-invalid @enderror" name="password" required=""  aria-describedby="emailHelp" placeholder="Password">
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -49,24 +49,24 @@
                         <form action="{{ route('register') }}" id="contact_form" method="post">
                             @csrf
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Full Name </label>
-                                <input type="text" class="form-control"  aria-describedby="emailHelp" placeholder="Full Name " name="name" required="">
+                                <label for="fullName">Full Name </label>
+                                <input type="text" id="fullName" class="form-control"  aria-describedby="emailHelp" placeholder="Full Name " name="name" required="">
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Phone </label>
-                                <input type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}"  aria-describedby="emailHelp" placeholder="Phone "  required="">
+                                <label for="userPhone">Phone </label>
+                                <input type="text" id="userPhone" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}"  aria-describedby="emailHelp" placeholder="Phone "  required="">
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Email </label>
-                                <input type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}"  aria-describedby="emailHelp" placeholder="Email " required="">
+                                <label for="usereMail">Email </label>
+                                <input type="text" id="usereMail" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}"  aria-describedby="emailHelp" placeholder="Email " required="">
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Password</label>
-                                <input type="password" class="form-control"  aria-describedby="emailHelp" placeholder="Password" name="password" required="">
+                                <label for="userPassword">Password</label>
+                                <input type="password" id="userPassword" class="form-control"  aria-describedby="emailHelp" placeholder="Password" name="password" required="">
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Confirm Password</label>
-                                <input type="password" class="form-control"  aria-describedby="emailHelp" placeholder="Re-type Password" name="password_confirmation" required="">
+                                <label for="conPassword">Confirm Password</label>
+                                <input type="password" id="conPassword" class="form-control"  aria-describedby="emailHelp" placeholder="Re-type Password" name="password_confirmation" required="">
                             </div>
                             <div class="contact_form_button">
                                 <button type="submit" class="btn btn-info">SIgnUp</button>
