@@ -158,7 +158,7 @@ $hot_products = DB::table('products')->join('brands','products.brand_id','brands
                         </div>
                     </div>
                     
-           <!-------------- Featured, On sale and best Rated product -->
+   <!-------------- Featured, On sale and best Rated product -->
                     <div class="featured">
                         <div class="tabbed_container">
                             <div class="tabs">
@@ -189,17 +189,19 @@ $hot_products = DB::table('products')->join('brands','products.brand_id','brands
                                                     
                                         
                                                 <div class="product_name"><div><a href="#">{{ substr($feature->product_name, 0,20) }}</a></div>
+                   {{-- Wishlist adn add to cart section --}}
                                             </div>
                                                 <div class="product_extras">
-                                                   {{--  <div class="product_color">
-                                                        <input type="radio" checked name="product_color" style="background:#b19c83">
-                                                        <input type="radio" name="product_color" style="background:#000000">
-                                                        <input type="radio" name="product_color" style="background:#999999">
-                                                    </div> --}}
+                                            
                                                     <button class="product_cart_button">Add to Cart</button>
                                                 </div>
                                             </div>
-                                            <div class="product_fav"><i class="fas fa-heart"></i></div>
+                                          <a href="{{ route('add.wishlist',$feature->id) }}">
+                                            <div class="product_fav">
+                                               <i class="fa fa-heart text-info"></i>
+                                             </div>
+                                         </a>
+
                                             <ul class="product_marks">
                                                 @if($feature->discount_price==NULL)
                                                  <li class="product_mark product_discount" style="background: green;">NEW</li>
@@ -222,8 +224,8 @@ $hot_products = DB::table('products')->join('brands','products.brand_id','brands
  
 
                                 </div>
-                                <div class="featured_slider_dots_cover"></div>
-                            </div>
+                            <div class="featured_slider_dots_cover"></div>
+                         </div>
 
                              <!--Trend Product Panel -->
                             <div class="product_panel panel active">

@@ -83,6 +83,11 @@ Route::get('admin/edit/post/{id}','Admin\Post\PostController@editPost')->name('e
 Route::post('admin/update/post/{id}','Admin\Post\PostController@updatePost')->name('update.blogpost');
 
 
+//Wishlist routes Here
+Route::get('add/wishlish/{id}','WishlistController@AddWishlist')->name('add.wishlist');
+
+
+
 
 
 //Subcategry Routes using ajax
