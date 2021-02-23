@@ -84,7 +84,7 @@ Route::post('admin/update/post/{id}','Admin\Post\PostController@updatePost')->na
 
 
 //Wishlist routes Here
-Route::get('add/wishlish/{id}','WishlistController@AddWishlist')->name('add.wishlist');
+Route::get('add/wishlist/{id}','WishlistController@AddWishlist');
 
 
 

@@ -1,14 +1,15 @@
 @extends('layouts.app')
-@php
+@section('content')
+ @include('layouts.menubar')
+ <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    @php
 $feature_product = DB::table('products')->where('status',1)->orderBy('id','DESC')->limit(20)->get();
 $trend_product = DB::table('products')->where('status',1)->where('trend',1)->orderBy('id','DESC')->limit(20)->get();
 $best_product = DB::table('products')->where('status',1)->where('best_rated',1)->orderBy('id','DESC')->limit(20)->get();
 $hot_products = DB::table('products')->join('brands','products.brand_id','brands.id')->select('products.*','brands.brand_name')->where('products.status',1)->where('hot_deal',1)->orderBy('id','DESC')->limit(20)->get();
-
-
+ 
 @endphp
-@section('content')
- @include('layouts.menubar')
+
     <div class="characteristics">
         <div class="container">
             <div class="row">
@@ -189,18 +190,19 @@ $hot_products = DB::table('products')->join('brands','products.brand_id','brands
                                                     
                                         
                                                 <div class="product_name"><div><a href="#">{{ substr($feature->product_name, 0,20) }}</a></div>
-                   {{-- Wishlist adn add to cart section --}}
+                   {{-- Wishlist and add to cart section --}}
                                             </div>
                                                 <div class="product_extras">
                                             
                                                     <button class="product_cart_button">Add to Cart</button>
                                                 </div>
                                             </div>
-                                          <a href="{{ route('add.wishlist',$feature->id) }}">
+                                            {{-- wishlist problem ace --}}
+                                          <button class="addwishlist" data-id="{{ $feature->id }}" {{-- href="{{ route('add.wishlist',$feature->id) }}" --}}>
                                             <div class="product_fav">
                                                <i class="fa fa-heart text-info"></i>
                                              </div>
-                                         </a>
+                                         </button>
 
                                             <ul class="product_marks">
                                                 @if($feature->discount_price==NULL)
@@ -2858,4 +2860,45 @@ $hot_products = DB::table('products')->join('brands','products.brand_id','brands
             </div>
         </div>
     </div>
+
+    <script type="text/javascript">
+      $(document).ready(function() {
+            $('.addwishlist').on('click', function(){  
+              var id = $(this).data('id');
+              if(id) {
+                 $.ajax({
+                     url: "{{  url('/add/wishlist/') }}/"+id,
+                     type:"GET",
+                     dataType:"json",
+                     success:function(data) {
+                       const Toast = Swal.mixin({
+                          toast: true,
+                          position: 'top-end',
+                          showConfirmButton: false,
+                          timer: 3000
+                        })
+
+                       if($.isEmptyObject(data.error)){
+                            Toast.fire({
+                              type: 'success',
+                              title: data.success
+                            })
+                       }else{
+                             Toast.fire({
+                                type: 'error',
+                                title: data.error
+                            })
+                       }
+
+                     },
+                    
+                 });
+             } else {
+                 alert('danger');
+             }
+              e.preventDefault();
+         });
+     });
+
+</script>
 @endsection
