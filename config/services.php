@@ -29,5 +29,15 @@ return [
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
+     'google' => [
+    'client_id' => '939041927606-b2tvfve41dhbmiem6opcqo7bfflcqokb.apps.googleusercontent.com',
+    'client_secret' => 'alyygZpHTFRrIC7jPfymTYcb',
+    'redirect' => 'http://localhost/ecommerce_laravel/callback/google',
+  ],
+   'github' => [
+    'client_id' => '81a1d1192147e04fb656',
+    'client_secret' => '9ab9cdada48750f9e38fb385965474684b8b1a34',
+    'redirect' => 'http://localhost/ecommerce_laravel/callback/github',
+  ],
 
 ];

@@ -1,8 +1,23 @@
 
 <?php
 
+//Socailite Routes for google
+ Route::get('/auth/redirect/{provider}', 'GoogleLoginController@redirect');
+ Route::get('/callback/{provider}', 'GoogleLoginController@callback');
+
+//Socailite Routes for github
+ Route::get('/auth/redirect/{provider}', 'GithubSocialController@redirect');
+ Route::get('/callback/{provider}', 'GithubSocialController@callback');
 
 
+//Wishlist routes Here
+Route::get('add/wishlist/{id}','WishlistController@AddWishlist');
+
+//Cart routes Here
+Route::get('add/cart/{id}','CartController@AddCart');
+
+
+//front page or single page routes
 Route::get('/', function () {return view('pages.index');});
 //auth & user
 Auth::routes(['verify' => true]);
@@ -83,8 +98,6 @@ Route::get('admin/edit/post/{id}','Admin\Post\PostController@editPost')->name('e
 Route::post('admin/update/post/{id}','Admin\Post\PostController@updatePost')->name('update.blogpost');
 
 
-//Wishlist routes Here
-Route::get('add/wishlist/{id}','WishlistController@AddWishlist');
 
 
 

@@ -159,7 +159,7 @@ $hot_products = DB::table('products')->join('brands','products.brand_id','brands
                         </div>
                     </div>
                     
-   <!-------------- Featured, On sale and best Rated product -->
+ <!-------------- Featured, On sale and best Rated product -->
                     <div class="featured">
                         <div class="tabbed_container">
                             <div class="tabs">
@@ -192,9 +192,10 @@ $hot_products = DB::table('products')->join('brands','products.brand_id','brands
                                                 <div class="product_name"><div><a href="#">{{ substr($feature->product_name, 0,20) }}</a></div>
                    {{-- Wishlist and add to cart section --}}
                                             </div>
-                                                <div class="product_extras">
+                                             <div class="product_extras">
                                             
-                                                    <button class="product_cart_button">Add to Cart</button>
+                                               <button data-id="{{ $feature->id }}" class="product_cart_button addcart" >Add to Cart
+                                               </button>
                                                 </div>
                                             </div>
                                             {{-- wishlist problem ace --}}
@@ -2507,7 +2508,7 @@ $products=DB::table('products')->where('category_id',$category_id)->where('statu
         </div>
     </div>
 
-   <!----------Show Buy One Get One Product -->
+   <!----------Show Buy One Get One Product ----------------------------->
 
     <div class="trends">
         <div class="trends_background" style="background-image:url({{ asset('public/frontend/images/trends_background.jpg') }})"></div>
@@ -2519,7 +2520,7 @@ $products=DB::table('products')->where('category_id',$category_id)->where('statu
                 <div class="col-lg-3">
                     <div class="trends_container">
                         <h2 class="trends_title">Buy One Get One</h2>
-                        <div class="trends_text"><p>Lorem ipsum dolor sit amet, consectetur adipiscing Donec et.</p></div>
+                        <div class="trends_text"><p>We are giving a greate offer for any trending products</p></div>
                         <div class="trends_slider_nav">
                             <div class="trends_prev trends_nav"><i class="fas fa-angle-left ml-auto"></i></div>
                             <div class="trends_next trends_nav"><i class="fas fa-angle-right ml-auto"></i></div>
@@ -2885,14 +2886,58 @@ $products=DB::table('products')->where('category_id',$category_id)->where('statu
             </div>
         </div>
     </div>
-
+{{-- add wishlist --}}
     <script type="text/javascript">
       $(document).ready(function() {
             $('.addwishlist').on('click', function(){  
               var id = $(this).data('id');
+       
               if(id) {
                  $.ajax({
                      url: "{{  url('/add/wishlist/') }}/"+id,
+                     type:"GET",
+                     dataType:"json",
+                     success:function(data) {
+                       const Toast = Swal.mixin({
+                          toast: true,
+                          position: 'top-end',
+                          showConfirmButton: false,
+                          timer: 3000
+                        })
+
+                       if($.isEmptyObject(data.error)){
+                            Toast.fire({
+                              type: 'success',
+                              title: data.success
+                            })
+                       }else{
+                             Toast.fire({
+                                type: 'error',
+                                title: data.error
+                            })
+                       }
+
+                     },
+                    
+                 });
+             } else {
+                 alert('danger');
+             }
+              e.preventDefault();
+         });
+     });
+
+</script>
+
+{{-- add to Cart --}}
+    <script type="text/javascript">
+      $(document).ready(function() {
+            $('.addcart').on('click', function(e){  
+              var id = $(this).data('id');
+          
+              if(id) {
+                 $.ajax({
+                     url: "{{  url('/add/cart/') }}/"+id,
                      type:"GET",
                      dataType:"json",
                      success:function(data) {

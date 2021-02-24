@@ -40,6 +40,9 @@
                         <br><br>
                         <button type="submit" class="btn btn-primary btn-block">Login With Facebook</button>
                         <a href="{{ url('/auth/redirect/google') }}" class="btn btn-danger btn-block">Login With Google</a>
+                        
+                        <a href="{{ url('/auth/redirect/github') }}" class="btn btn-info btn-block">Login With Github</a>
+ 
                     </div>
                 </div>
                  <div class="col-lg-5 offset-lg-1" style="border: 1px solid grey; padding: 20px; box-shadow:  2px 5px 5px 5px #888888;">
