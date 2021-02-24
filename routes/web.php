@@ -115,5 +115,5 @@ Route::get('get/subcategory/{category_id}','Admin\Product\ProductController@GetS
 //FrontEnd section start here 
 Route::post('store/newsletter','FrontController@storeNewsletter')->name('store.newsletter');
  Route::get('/product/details/{id}/{product_name}', 'ProductController@ProductView');
- //Route::post('/cart/product/add/{id}', 'ProductController@AddCart');
+ Route::post('/cart/product/add/{id}', 'ProductController@AddCart');
 

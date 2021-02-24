@@ -46,9 +46,9 @@
 										 	 <div class="form-group">
 											    <label for="exampleFormControlSelect1">Size</label>
 											    <select class="form-control input-lg" id="exampleFormControlSelect1" name="size">
-											    	@foreach($product_size as $size)
-											          <option value="{{ $size }}">{{ $size }}</option>
-											      	@endforeach
+									    	@foreach($product_size as $size)
+									          <option value="{{ $size }}">{{ $size }}</option>
+									      	@endforeach
 											    </select>
 											  </div>
 										 </div>
