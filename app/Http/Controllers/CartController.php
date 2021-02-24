@@ -40,4 +40,21 @@ class CartController extends Controller
         $content=Cart::content();
         return response()->json($content);
     }
+      public function showCart(){
+        $carts = Cart::content();
+        return view('pages.cart',compact('carts'));
+    }
+ public function removeCart($rowId)
+    {
+        Cart::remove($rowId);
+        return redirect()->back();
+    }
+
+    public function UpdateCart(Request $request){
+        $rowId = $request->productid;
+        $quantity = $request->qty;
+        Cart::update($rowId,$quantity);
+        return redirect()->back();
+    }
+
 }

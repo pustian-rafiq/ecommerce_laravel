@@ -119,11 +119,15 @@
                                         <div class="custom_dropdown">
                                             <div class="custom_dropdown_list">
                                                 <span class="custom_dropdown_placeholder clc">All Categories</span>
-                                                <i class="fas fa-chevron-down"></i>
-                                                <ul class="custom_list clc">
-                                                    @foreach($categories as $cat)
-                                                    <li><a class="clc" href="#">{{ $cat->category_name }}</a></li>
-                                                     @endforeach
+                                                <i class="fa fa-chevron-down"></i>
+                                                 <ul class="custom_list clc">
+                                                    <li><a class="clc" href="#">All Categories</a></li>
+                                                    @foreach($categories as $row)
+                                                    <li class="text-red">
+                                                        <a style="color: red;" class="clc " href="#">{{ $row->category_name }}
+                                                        </a>
+                                                    </li>
+                                                    @endforeach
                                                 </ul>
                                             </div>
                                         </div>
@@ -159,8 +163,8 @@
                                         <div class="cart_count"><span>{{ Cart::count() }}</span></div>
                                     </div>
                                     <div class="cart_content">
-                                        <div class="cart_text"><a href="#">Cart</a></div>
-                                        <div class="cart_price">$85</div>
+                                        <div class="cart_text"><a href="{{ route('show.cart') }}">Cart</a></div>
+                                        <div class="cart_price">${{ Cart::Subtotal() }}</div>
                                     </div>
                                 </div>
                             </div>

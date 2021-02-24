@@ -37,7 +37,7 @@ class ProductController extends Controller
     	                $data['options']['image']=$product->image_one;
                         $data['options']['color']=$request->color;
                         $data['options']['size']=$request->size;
-    	               Cart::add($data);
+    	                Cart::add($data);
     	                $notification=array(
                            'messege'=>'Successfully Added',
                            'alert-type'=>'success'
@@ -60,4 +60,6 @@ class ProductController extends Controller
                        return Redirect()->to('/')->with($notification);
     	 }
     }
+
+  
 }

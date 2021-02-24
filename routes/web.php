@@ -16,6 +16,19 @@ Route::get('add/wishlist/{id}','WishlistController@AddWishlist');
 //Cart routes Here
 Route::get('add/cart/{id}','CartController@AddCart');
 Route::get('check','CartController@Check');
+Route::get('products/cart','CartController@showCart')->name('show.cart');
+// Route::get('/show/cart/product', 'CartController@showCart')->name('show.cart');
+
+Route::get('remove/cart/{rowId}','CartController@removeCart');
+Route::post('update/cart/item','CartController@UpdateCart')->name('update.cartitem');
+// Route::get('cart/product/view/{id}','CartController@ViewProduct');
+// Route::post('insert/into/cart/','CartController@InsertCart')->name('insert.into.cart');
+// Route::get('user/checkout/','CartController@Checkout')->name('user.checkout');
+// Route::get('user/wishlist/','CartController@Wishlist')->name('user.wishlist');
+// Route::post('user/apply/coupon/','CartController@Coupon')->name('apply.coupon');
+// Route::get('coupon/remove/','CartController@CouponRemove')->name('coupon.remove');
+// Route::get('payment/page/','CartController@PymentPage')->name('payment.step');
+
 
 
 //front page or single page routes
@@ -116,4 +129,5 @@ Route::get('get/subcategory/{category_id}','Admin\Product\ProductController@GetS
 Route::post('store/newsletter','FrontController@storeNewsletter')->name('store.newsletter');
  Route::get('/product/details/{id}/{product_name}', 'ProductController@ProductView');
  Route::post('/cart/product/add/{id}', 'ProductController@AddCart');
+ 
 
