@@ -21,10 +21,10 @@ class WishlistController extends Controller
     		if ($check) {
            return response()->json(['error' => 'Product Already has on your wishlist']); 
     			 // $notification=array(
-        //                 'messege'=>'Product aleady has your wishlist',
-        //                 'alert-type'=>'error'
-        //                  );
-        //                return Redirect()->back()->with($notification); 
+          //                 'messege'=>'Product aleady has your wishlist',
+         //                 'alert-type'=>'error'
+          //                  );
+         //                return Redirect()->back()->with($notification); 
     		}else{
     			DB::table('wishlists')->insert($data);
            return response()->json(['success' => 'Successfully Added on your wishlist']); 

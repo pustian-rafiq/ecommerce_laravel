@@ -179,7 +179,9 @@ $hot_products = DB::table('products')->join('brands','products.brand_id','brands
                                   <div class="featured_slider_item">
                                         <div class="border_active"></div>
                                         <div class="product_item discount d-flex flex-column align-items-center justify-content-center text-center">
-                                            <div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="{{ asset($feature->image_one) }}" style="height: 120px; width: 130px" alt=""></div>
+                                            <div class="product_image d-flex flex-column align-items-center justify-content-center">
+                                               <a href="{{ url('product/details/'.$feature->id.'/'.$feature->product_name) }}"> <img src="{{ asset($feature->image_one) }}" style="height: 120px; width: 130px;"></a>
+                                            </div>
                                             <div class="product_content">
                                               
                                                 @if($feature->discount_price==NULL)
@@ -187,11 +189,19 @@ $hot_products = DB::table('products')->join('brands','products.brand_id','brands
                                                 @else
                                                   <div class="product_price discount">${{ $feature->discount_price }}<span>${{ $feature->selling_price }}</span></div>
                                                 @endif
-                                                    
+
+                                                  
                                         
-                                                <div class="product_name"><div><a href="#">{{ substr($feature->product_name, 0,20) }}</a></div>
+                                      <div class="product_name">
+
+                                             <div><a href="{{ url('product/details/'.$feature->id.'/'.$feature->product_name) }}">
+                                             {{ substr($feature->product_name, 0,20) }}</a>
+                                              </div>
+                                          </div>
+
+
                    {{-- Wishlist and add to cart section --}}
-                                            </div>
+                                                
                                              <div class="product_extras">
                                             
                                                <button data-id="{{ $feature->id }}" class="product_cart_button addcart" >Add to Cart
@@ -199,7 +209,8 @@ $hot_products = DB::table('products')->join('brands','products.brand_id','brands
                                                 </div>
                                             </div>
                                             {{-- wishlist problem ace --}}
-                                          <button class="addwishlist" data-id="{{ $feature->id }}" {{-- href="{{ route('add.wishlist',$feature->id) }}" --}}>
+                                          <button class="addwishlist" data-id="{{ 
+                                            $feature->id }}" {{-- href="{{ route('add.wishlist',$feature->id) }}" --}}>
                                             <div class="product_fav">
                                                <i class="fa fa-heart text-info"></i>
                                              </div>
