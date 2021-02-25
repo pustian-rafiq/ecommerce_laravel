@@ -26,11 +26,7 @@
 										</div>
 
 										@if($row->options->color == NULL)
-										<div class="cart_item_title">Size</div>
-										<div class="cart_item_text">
-												No color
-											</div>
-										@else
+									 	@else
 										<div class="cart_item_color cart_info_col">
 											<div class="cart_item_title">Color</div>
 											<div class="cart_item_text">
@@ -40,10 +36,6 @@
 										@endif
 
 										@if($row->options->size == NULL)
-										<div class="cart_item_title">Size</div>
-										<div class="cart_item_text">
-												No Size
-											</div>
 										@else
 										<div class="cart_item_color cart_info_col">
 											<div class="cart_item_title">Size</div>

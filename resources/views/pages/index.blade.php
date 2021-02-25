@@ -204,8 +204,7 @@ $hot_products = DB::table('products')->join('brands','products.brand_id','brands
                                                 
                                              <div class="product_extras">
                                             
-                                               <button data-id="{{ $feature->id }}" class="product_cart_button addcart" >Add to Cart
-                                               </button>
+                                               <button id="{{ $feature->id }}" class="product_cart_button addcart" data-toggle="modal" data-target="#cartmodal"  onclick="productview(this.id)">Add to Cart</button>
                                                 </div>
                                             </div>
                                             {{-- wishlist problem ace --}}
@@ -2897,6 +2896,66 @@ $products=DB::table('products')->where('category_id',$category_id)->where('statu
             </div>
         </div>
     </div>
+
+ <!--When we click add to cart button this product cart add modal is opened-->
+
+<div class="modal fade " id="cartmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-center" id="exampleModalLabel">Product Short Description</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       <div class="row">
+          <div class="col-md-4">
+              <div class="card" style="width: 16rem;">
+              <img src="" class="card-img-top" id="pimage" style="height: 240px;">
+              <div class="card-body">
+               
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 ml-auto">
+              <ul class="list-group">
+                <li class="list-group-item"> <h5 class="card-title" id="pname"></h5></span></li>
+             <li class="list-group-item">Product code: <span id="pcode"> </span></li>
+              <li class="list-group-item">Category:  <span id="pcat"> </span></li>
+              <li class="list-group-item">SubCategory:  <span id="psubcat"> </span></li>
+              <li class="list-group-item">Brand: <span id="pbrand"> </span></li>
+              <li class="list-group-item">Stock: <span class="badge " style="background: green; color:white;">Available</span></li>
+            </ul>
+          </div>
+          <div class="col-md-4 ">
+              <form action=" {{ route('insert.into.cart') }} " method="post">
+                @csrf
+                <input type="hidden" name="product_id" id="product_id">
+                <div class="form-group" id="colordiv">
+                  <label for="">Color</label>
+                  <select name="color" class="form-control">
+                  </select>
+                </div>
+                 <div class="form-group" id="sizediv" >
+                  <label for="exampleInputEmail1">Size</label>
+                  <select name="size" class="form-control" id="size">
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Quantity</label>
+                  <input type="number" class="form-control" value="1" name="qty">
+                </div>
+                <button type="submit" class="btn btn-primary">Add To Cart</button>
+              </form>
+           </div>
+         </div>
+      </div>  
+    </div>
+  </div>
+</div>
+
+<!--modal end-->
 {{-- add wishlist --}}
     <script type="text/javascript">
       $(document).ready(function() {
@@ -2940,8 +2999,47 @@ $products=DB::table('products')->where('category_id',$category_id)->where('statu
 
 </script>
 
-{{-- add to Cart --}}
-    <script type="text/javascript">
+<!-- add to Cart -->
+<!-- when we click add to cart button, a pop up modal is opened and show the below information using ajax.Finally we add the product into cart -->
+<script type="text/javascript">
+    function productview(id){
+          $.ajax({
+                     url: "{{  url('/cart/product/view/') }}/"+id,
+                     type:"GET",
+                     dataType:"json",
+                     success:function(data) {
+                       $('#pname').text(data.product.product_name);
+                       $('#pimage').attr('src',data.product.image_one);
+                       $('#pcat').text(data.product.category_name);
+                       $('#psubcat').text(data.product.subcategory_name);
+                       $('#pbrand').text(data.product.brand_name);
+                       $('#pcode').text(data.product.product_code);
+                       $('#product_id').val(data.product.id);
+
+                        var d =$('select[name="size"]').empty();
+                         $.each(data.size, function(key, value){
+                             $('select[name="size"]').append('<option value="'+ value +'">' + value + '</option>');
+                              if (data.size == "") {
+                                     $('#sizediv').hide();   
+                              }else{
+                                    $('#sizediv').show();
+                              } 
+                         });
+
+                        var d =$('select[name="color"]').empty();
+                         $.each(data.color, function(key, value){
+                             $('select[name="color"]').append('<option value="'+ value +'">' + value + '</option>');
+                               if (data.color == "") {
+                                     $('#colordiv').hide();
+                              } else{
+                                   $('#colordiv').show();
+                              }
+                         });
+             }
+      })
+    }
+</script>
+    {{-- <script type="text/javascript">
       $(document).ready(function() {
             $('.addcart').on('click', function(e){  
               var id = $(this).data('id');
@@ -2981,5 +3079,5 @@ $products=DB::table('products')->where('category_id',$category_id)->where('statu
          });
      });
 
-</script>
+</script> --}}
 @endsection

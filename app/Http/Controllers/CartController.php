@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Cart;
 use DB;
+use Response;
+ 
 class CartController extends Controller
 {
     public function AddCart($id){
@@ -55,6 +57,44 @@ class CartController extends Controller
         $quantity = $request->qty;
         Cart::update($rowId,$quantity);
         return redirect()->back();
+    }
+
+  public function InsertCart(Request $request)
+    {
+         $id=$request->product_id;
+          $product=DB::table('products')->where('id',$id)->first();
+          $data=array();
+          if ($product->discount_price == NULL) {
+                        $data['id']=$product->id;
+                        $data['name']=$product->product_name;
+                        $data['qty']=$request->qty;;
+                        $data['price']= $product->selling_price;          
+                        $data['weight']=1;
+                        $data['options']['image']=$product->image_one;
+                        $data['options']['color']=$request->color;
+                        $data['options']['size']=$request->size;
+                      Cart::add($data);
+                       $notification=array(
+                              'messege'=>'Successfully Done',
+                               'alert-type'=>'success'
+                         );
+                       return Redirect()->back()->with($notification);
+           }else{
+                       $data['id']=$product->id;
+                        $data['name']=$product->product_name;
+                        $data['qty']=$request->qty;;
+                        $data['price']= $product->discount_price;          
+                        $data['weight']=1;
+                        $data['options']['image']=$product->image_one;  
+                        $data['options']['color']=$request->color;
+                        $data['options']['size']=$request->size;
+                        Cart::add($data);  
+                      $notification=array(
+                              'messege'=>'Successfully Done',
+                               'alert-type'=>'success'
+                         );
+                       return Redirect()->back()->with($notification);
+         }
     }
 
 }

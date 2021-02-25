@@ -21,8 +21,8 @@ Route::get('products/cart','CartController@showCart')->name('show.cart');
 
 Route::get('remove/cart/{rowId}','CartController@removeCart');
 Route::post('update/cart/item','CartController@UpdateCart')->name('update.cartitem');
-// Route::get('cart/product/view/{id}','CartController@ViewProduct');
-// Route::post('insert/into/cart/','CartController@InsertCart')->name('insert.into.cart');
+ 
+Route::post('insert/into/cart/','CartController@InsertCart')->name('insert.into.cart');
 // Route::get('user/checkout/','CartController@Checkout')->name('user.checkout');
 // Route::get('user/wishlist/','CartController@Wishlist')->name('user.wishlist');
 // Route::post('user/apply/coupon/','CartController@Coupon')->name('apply.coupon');
@@ -127,7 +127,8 @@ Route::get('get/subcategory/{category_id}','Admin\Product\ProductController@GetS
 
 //FrontEnd section start here 
 Route::post('store/newsletter','FrontController@storeNewsletter')->name('store.newsletter');
- Route::get('/product/details/{id}/{product_name}', 'ProductController@ProductView');
+ Route::get('/product/details/{id}/{product_name}', 'ProductController@ProductDetials');
  Route::post('/cart/product/add/{id}', 'ProductController@AddCart');
+ Route::get('cart/product/view/{id}','ProductController@ViewProduct');
  
 
