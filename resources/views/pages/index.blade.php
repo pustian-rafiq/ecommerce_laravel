@@ -200,21 +200,25 @@ $hot_products = DB::table('products')->join('brands','products.brand_id','brands
                                           </div>
 
 
-                   {{-- Wishlist and add to cart section --}}
+                <!--
+                    ***Wishlist and add to cart section
+                    ***After clickomg Add to Cart button, porduct view modal is opened
+                -->
                                                 
                                              <div class="product_extras">
                                             
                                                <button id="{{ $feature->id }}" class="product_cart_button addcart" data-toggle="modal" data-target="#cartmodal"  onclick="productview(this.id)">Add to Cart</button>
                                                 </div>
                                             </div>
-                                            {{-- wishlist problem ace --}}
+
+                    <!------- wishlist problem ace -------------->
                                           <button class="addwishlist" data-id="{{ 
                                             $feature->id }}" {{-- href="{{ route('add.wishlist',$feature->id) }}" --}}>
                                             <div class="product_fav">
                                                <i class="fa fa-heart text-info"></i>
                                              </div>
                                          </button>
-
+   <!------- Show product price either discount price or selling price -------------->
                                             <ul class="product_marks">
                                                 @if($feature->discount_price==NULL)
                                                  <li class="product_mark product_discount" style="background: green;">NEW</li>
@@ -240,7 +244,7 @@ $hot_products = DB::table('products')->join('brands','products.brand_id','brands
                             <div class="featured_slider_dots_cover"></div>
                          </div>
 
-                             <!--Trend Product Panel -->
+         <!-----------Show  Trend Product ---------------------------->
                             <div class="product_panel panel active">
                                 <div class="featured_slider slider">
                                       @foreach($trend_product as $trend)
@@ -3016,6 +3020,7 @@ $products=DB::table('products')->where('category_id',$category_id)->where('statu
                        $('#pcode').text(data.product.product_code);
                        $('#product_id').val(data.product.id);
 
+     // Dynamically show option tag into select tag for size and color
                         var d =$('select[name="size"]').empty();
                          $.each(data.size, function(key, value){
                              $('select[name="size"]').append('<option value="'+ value +'">' + value + '</option>');

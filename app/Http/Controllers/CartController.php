@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Cart;
 use DB;
 use Response;
+use Auth;
  
 class CartController extends Controller
 {
@@ -95,6 +96,33 @@ class CartController extends Controller
                          );
                        return Redirect()->back()->with($notification);
          }
+    }
+
+    public function Checkout(){
+
+
+        if (Auth::check()) {
+            $carts=Cart::content();
+              return view('pages.checkout',compact('carts'));
+        }else{
+            $notification=array(
+                   'messege'=>'At first login your account',
+                   'alert-type'=>'error'
+                 );
+               return Redirect()->route('login')->with($notification);
+        }
+    }
+    public function Wishlist(){
+
+        $userid = AUth::id();
+        $products = DB::table('Wishlists')
+                    ->join('products','Wishlists.product_id','products.id')
+                    ->select('products.*','Wishlists.user_id')
+                    ->where('Wishlists.user_id',$userid)
+                    ->get();
+
+                    return view('pages.Wishlist',compact('products'));
+        
     }
 
 }
