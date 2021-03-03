@@ -7,6 +7,7 @@ use Cart;
 use DB;
 use Response;
 use Auth;
+use Session;
  
 class CartController extends Controller
 {
@@ -124,5 +125,40 @@ class CartController extends Controller
                     return view('pages.Wishlist',compact('products'));
         
     }
+    public function Coupon(Request $request){
+        $coupon = $request->coupon;
+        $check_coupon = DB::table('coupons')->where('coupon_code',$coupon)->first();
+        if ($check_coupon) {
+            session::put('coupon_code',[
+                  'name' => $check_coupon->coupon_code,
+                  'discount' => $check_coupon->discount,
+
+                  // in cart.php set 'thousand_separator' => '',
+                  'balance' => Cart::Subtotal() - $check_coupon->discount
+              ]);
+              $notification=array(
+                              'messege'=>'Successfully Coupon Applied',
+                               'alert-type'=>'success'
+                         );
+            return redirect()->back()->with($notification);
+        }else{
+            $notification=array(
+                              'messege'=>'Invalid Coupon',
+                               'alert-type'=>'error'
+                         );
+            return redirect()->back()->with($notification);
+        }
+    }
+     public function CouponRemove()
+    {
+         session::forget('coupon_code');
+          return redirect()->back();
+    }
+    public function PymentPage()
+    {
+      $cart=Cart::content();
+      return view('pages.payment',compact('cart'));
+    }
+
 
 }

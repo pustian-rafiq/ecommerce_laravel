@@ -25,11 +25,12 @@ Route::post('update/cart/item','CartController@UpdateCart')->name('update.cartit
 Route::post('insert/into/cart/','CartController@InsertCart')->name('insert.into.cart');
 Route::get('user/checkout/','CartController@Checkout')->name('user.checkout');
 Route::get('user/wishlist/','CartController@Wishlist')->name('user.wishlist');
-// Route::post('user/apply/coupon/','CartController@Coupon')->name('apply.coupon');
-// Route::get('coupon/remove/','CartController@CouponRemove')->name('coupon.remove');
-// Route::get('payment/page/','CartController@PymentPage')->name('payment.step');
+Route::post('user/apply/coupon/','CartController@Coupon')->name('apply.coupon');
+Route::get('coupon/remove/','CartController@CouponRemove')->name('coupon.remove');
+Route::get('payment/page/','CartController@PymentPage')->name('payment.step');
 
-
+//payment methods
+Route::post('user/payment/process/','PaymentController@PaymentProcess')->name('payment.process');
 
 //front page or single page routes
 Route::get('/', function () {return view('pages.index');});
